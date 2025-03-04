@@ -128,6 +128,17 @@ class AddressBook {
     }
 
 
+    getCountByCity(city) {
+        return this.contacts
+            .filter(contact => contact.city === city)  // Find contacts in the given city
+            .reduce(count => count + 1, 0);  // Count them
+    }
+    
+    getCountByState(state) {
+        return this.contacts
+            .filter(contact => contact.state === state) // Find contacts in the given state
+            .reduce(count => count + 1, 0); // Count them
+    }
 
     // Display all contacts
     displayContacts() {
@@ -148,8 +159,10 @@ try {
     // addressBook.deleteContact("John", "Doe");
     // console.log("Search by city : "+addressBook.searchByCity("Bhopal"))
     // console.log("Search by state :"+addressBook.searchByState("MadhyaPradesh"));
-       console.log("View by City :"+ addressBook.viewByCity("Bhopal"));
-       console.log("Vies by State :"+addressBook.viewByState("MadhyaPradesh"));
+     //  console.log("View by City :"+ addressBook.viewByCity("Bhopal"));
+     //  console.log("Vies by State :"+addressBook.viewByState("MadhyaPradesh"));
+     console.log(addressBook.getCountByCity("Bhopal"));
+     console.log(addressBook.getCountByState("MadhyaPradesh"));
 
 
    // console.log("Address Book:");

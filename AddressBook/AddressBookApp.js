@@ -140,6 +140,13 @@ class AddressBook {
             .reduce(count => count + 1, 0); // Count them
     }
 
+    sortByName() {
+        return this.contacts
+            .slice() // Create a copy to avoid modifying the original array
+            .sort((a, b) => a.firstName.localeCompare(b.firstName)); // Sort by first name
+    }
+    
+
     // Display all contacts
     displayContacts() {
         return this.contacts.map(contact => contact.toString()).join("\n");
@@ -161,12 +168,12 @@ try {
     // console.log("Search by state :"+addressBook.searchByState("MadhyaPradesh"));
      //  console.log("View by City :"+ addressBook.viewByCity("Bhopal"));
      //  console.log("Vies by State :"+addressBook.viewByState("MadhyaPradesh"));
-     console.log(addressBook.getCountByCity("Bhopal"));
-     console.log(addressBook.getCountByState("MadhyaPradesh"));
-
-
-   // console.log("Address Book:");
-   // console.log(addressBook.displayContacts());
+     //console.log(addressBook.getCountByCity("Bhopal"));
+    // console.log(addressBook.getCountByState("MadhyaPradesh"));
+      let sortedContect= addressBook.sortByName();
+      console.log(sortedContect);
+      console.log("Address Book:");
+      console.log(addressBook.displayContacts());
    // console.log("Total Contacts:", addressBook.getContactCount());
 } catch (error) {
     console.error("Error:", error.message);

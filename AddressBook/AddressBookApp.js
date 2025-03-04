@@ -113,6 +113,21 @@ class AddressBook {
     }
 
 
+     //  View persons by city
+     viewByCity(city) {
+        return this.contacts
+            .filter(contact => contact.city === city)
+            .map(contact => `${contact.firstName} ${contact.lastName}`);
+    }
+
+    //  View persons by state
+    viewByState(state) {
+        return this.contacts
+            .filter(contact => contact.state === state)
+            .map(contact => `${contact.firstName} ${contact.lastName}`);
+    }
+
+
 
     // Display all contacts
     displayContacts() {
@@ -129,15 +144,17 @@ try {
    
     addressBook.addContact(contact1);
     addressBook.addContact(contact2);
-   // addressBook.editContact("Uday", "Kourav", { phone: "9999999999", address: "456 New St" });
-   // addressBook.deleteContact("John", "Doe");
-    console.log("Search by city : "+addressBook.searchByCity("Bhopal"))
-    console.log("Search by state :"+addressBook.searchByState("MadhyaPradesh"));
+    // addressBook.editContact("Uday", "Kourav", { phone: "9999999999", address: "456 New St" });
+    // addressBook.deleteContact("John", "Doe");
+    // console.log("Search by city : "+addressBook.searchByCity("Bhopal"))
+    // console.log("Search by state :"+addressBook.searchByState("MadhyaPradesh"));
+       console.log("View by City :"+ addressBook.viewByCity("Bhopal"));
+       console.log("Vies by State :"+addressBook.viewByState("MadhyaPradesh"));
 
 
-    console.log("Address Book:");
-    console.log(addressBook.displayContacts());
-    console.log("Total Contacts:", addressBook.getContactCount());
+   // console.log("Address Book:");
+   // console.log(addressBook.displayContacts());
+   // console.log("Total Contacts:", addressBook.getContactCount());
 } catch (error) {
     console.error("Error:", error.message);
 }

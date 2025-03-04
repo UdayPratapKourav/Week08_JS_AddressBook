@@ -48,13 +48,7 @@ class Contact {
     }
 }
 
-// Example Usage with Try-Catch for Error Handling
-// try {
-//     let contact1 = new Contact("Uday", "Kourav", "123 Main St", "Bhopal", "MadhyaPradesh", "462001", "9876543210", "uday@example.com");
-//     console.log(contact1.toString());
-// } catch (error) {
-//     console.error("Error:", error.message);
-// }
+
 class AddressBook {
     constructor() {
         this.contacts = []; // Array to store multiple contacts
@@ -146,6 +140,19 @@ class AddressBook {
             .sort((a, b) => a.firstName.localeCompare(b.firstName)); // Sort by first name
     }
     
+    sortByCity() {
+        return this.contacts.slice().sort((a, b) => a.city.localeCompare(b.city));
+    }
+    
+    sortByState() {
+        return this.contacts.slice().sort((a, b) => a.state.localeCompare(b.state));
+    }
+    
+    sortByZip() {
+        return this.contacts.slice().sort((a, b) => a.zip - b.zip);
+    }
+
+
 
     // Display all contacts
     displayContacts() {
@@ -153,28 +160,65 @@ class AddressBook {
     }
 }
 
-// Example Usage
+
 try {
+    console.log("========= ADDRESS BOOK APPLICATION =========");
+
+    // Creating an AddressBook instance
     let addressBook = new AddressBook();
 
+    // Adding contacts
     let contact1 = new Contact("Uday", "Kourav", "123 Main St", "Bhopal", "MadhyaPradesh", "462001", "9876543210", "uday@example.com");
     let contact2 = new Contact("John", "Kourav", "456 Park Ave", "Indore", "MadhyaPradesh", "452001", "9876543211", "john@example.com");
-   
+    let contact3 = new Contact("Ankit", "Kourav", "122 Main St", "Kareli", "MadhyaPradesh", "472001", "9876545210", "ankit@example.com");
+    let contact4 = new Contact("Bhupendra", "Kourav", "451 Park Ave", "Imaliya", "MadhyaPradesh", "482001", "9879543211", "bhupendra@example.com");
+
     addressBook.addContact(contact1);
     addressBook.addContact(contact2);
-    // addressBook.editContact("Uday", "Kourav", { phone: "9999999999", address: "456 New St" });
-    // addressBook.deleteContact("John", "Doe");
-    // console.log("Search by city : "+addressBook.searchByCity("Bhopal"))
-    // console.log("Search by state :"+addressBook.searchByState("MadhyaPradesh"));
-     //  console.log("View by City :"+ addressBook.viewByCity("Bhopal"));
-     //  console.log("Vies by State :"+addressBook.viewByState("MadhyaPradesh"));
-     //console.log(addressBook.getCountByCity("Bhopal"));
-    // console.log(addressBook.getCountByState("MadhyaPradesh"));
-      let sortedContect= addressBook.sortByName();
-      console.log(sortedContect);
-      console.log("Address Book:");
-      console.log(addressBook.displayContacts());
-   // console.log("Total Contacts:", addressBook.getContactCount());
+    addressBook.addContact(contact3);
+    addressBook.addContact(contact4);
+
+    console.log("\n Contacts added successfully!\n");
+
+    // Editing a contact
+    addressBook.editContact("Uday", "Kourav", { phone: "9999999999", address: "456 New St" });
+    console.log(" Contact updated: Uday Kourav's phone and address modified.\n");
+
+    // Deleting a contact
+    addressBook.deleteContact("John", "Kourav");
+    console.log(" Contact deleted: John Kourav removed from the Address Book.\n");
+
+    // Searching by city and state
+    console.log(" Search Results:");
+    console.log("- Search by City (Bhopal):", addressBook.searchByCity("Bhopal"));
+    console.log("- Search by State (Madhya Pradesh):", addressBook.searchByState("MadhyaPradesh"), "\n");
+
+    // Viewing persons by city and state
+    console.log(" View Results:");
+    console.log("- Persons in Bhopal:", addressBook.viewByCity("Bhopal"));
+    console.log("- Persons in Madhya Pradesh:", addressBook.viewByState("MadhyaPradesh"), "\n");
+
+    // Counting contacts by city and state
+    console.log(" Count Results:");
+    console.log("- Count in Bhopal:", addressBook.getCountByCity("Bhopal"));
+    console.log("- Count in Madhya Pradesh:", addressBook.getCountByState("MadhyaPradesh"), "\n");
+
+    // Sorting contacts in different ways
+    console.log(" Sorting Address Book:");
+    console.log("- Sorted by Name:", addressBook.sortByName());
+    console.log("- Sorted by City:", addressBook.sortByCity());
+    console.log("- Sorted by State:", addressBook.sortByState());
+    console.log("- Sorted by Zip Code:", addressBook.sortByZip(), "\n");
+
+    // Displaying final Address Book
+    console.log(" FINAL ADDRESS BOOK:");
+    console.log(addressBook.displayContacts());
+
+    // Total number of contacts
+    console.log("\n Total Contacts:", addressBook.getContactCount());
+
+    console.log("\n========= END OF PROGRAM =========");
+
 } catch (error) {
-    console.error("Error:", error.message);
+    console.error(" Error:", error.message);
 }

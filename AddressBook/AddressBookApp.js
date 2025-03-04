@@ -62,9 +62,16 @@ class AddressBook {
 
     // Add a new contact after validation
     addContact(contact) {
-        if (this.contacts.some(c => c.firstName === contact.firstName && c.lastName === contact.lastName)) {
+        // Check if contact already exists
+        let duplicate = this.contacts.filter(c => 
+            c.firstName === contact.firstName && c.lastName === contact.lastName
+        );
+
+        if (duplicate.length > 0) {
             throw new Error("Contact with this name already exists.");
         }
+
+        // If no duplicate, add contact
         this.contacts.push(contact);
     }
     // Find and edit an existing contact
@@ -106,8 +113,8 @@ try {
     let addressBook = new AddressBook();
 
     let contact1 = new Contact("Uday", "Kourav", "123 Main St", "Bhopal", "MadhyaPradesh", "462001", "9876543210", "uday@example.com");
-    let contact2 = new Contact("John", "Doe", "456 Park Ave", "Indore", "MadhyaPradesh", "452001", "9876543211", "john@example.com");
-
+    let contact2 = new Contact("John", "Kourav", "456 Park Ave", "Indore", "MadhyaPradesh", "452001", "9876543211", "john@example.com");
+   
     addressBook.addContact(contact1);
     addressBook.addContact(contact2);
    // addressBook.editContact("Uday", "Kourav", { phone: "9999999999", address: "456 New St" });

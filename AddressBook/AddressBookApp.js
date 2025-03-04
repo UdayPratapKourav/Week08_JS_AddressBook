@@ -79,6 +79,18 @@ class AddressBook {
         Object.assign(contact, updatedDetails);
     }
 
+     // Method to delete a contact by name
+     deleteContact(firstName, lastName) {
+        let index = this.contacts.findIndex(contact => contact.firstName === firstName && contact.lastName === lastName);
+        
+        if (index !== -1) {
+            this.contacts.splice(index, 1); // Remove the contact from the array
+            console.log(`Contact ${firstName} ${lastName} deleted successfully.`);
+        } else {
+            console.log(`Contact ${firstName} ${lastName} not found.`);
+        }
+    }
+
     // Display all contacts
     displayContacts() {
         return this.contacts.map(contact => contact.toString()).join("\n");
@@ -95,6 +107,7 @@ try {
     addressBook.addContact(contact1);
     addressBook.addContact(contact2);
     addressBook.editContact("Uday", "Kourav", { phone: "9999999999", address: "456 New St" });
+    addressBook.deleteContact("John", "Doe");
 
     console.log("Address Book:");
     console.log(addressBook.displayContacts());

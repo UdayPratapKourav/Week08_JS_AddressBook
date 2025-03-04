@@ -67,6 +67,17 @@ class AddressBook {
         }
         this.contacts.push(contact);
     }
+    // Find and edit an existing contact
+    editContact(firstName, lastName, updatedDetails) {
+        let contact = this.contacts.find(c => c.firstName === firstName && c.lastName === lastName);
+        
+        if (!contact) {
+            throw new Error("Contact not found.");
+        }
+
+        // Update only the provided details
+        Object.assign(contact, updatedDetails);
+    }
 
     // Display all contacts
     displayContacts() {
@@ -83,6 +94,7 @@ try {
 
     addressBook.addContact(contact1);
     addressBook.addContact(contact2);
+    addressBook.editContact("Uday", "Kourav", { phone: "9999999999", address: "456 New St" });
 
     console.log("Address Book:");
     console.log(addressBook.displayContacts());

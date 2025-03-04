@@ -102,6 +102,18 @@ class AddressBook {
         return this.contacts.reduce((count) => count + 1, 0);
     }
 
+     //  Search contacts by city
+     searchByCity(city) {
+        return this.contacts.filter(contact => contact.city === city);
+    }
+
+    //  Search contacts by state
+    searchByState(state) {
+        return this.contacts.filter(contact => contact.state === state);
+    }
+
+
+
     // Display all contacts
     displayContacts() {
         return this.contacts.map(contact => contact.toString()).join("\n");
@@ -119,6 +131,9 @@ try {
     addressBook.addContact(contact2);
    // addressBook.editContact("Uday", "Kourav", { phone: "9999999999", address: "456 New St" });
    // addressBook.deleteContact("John", "Doe");
+    console.log("Search by city : "+addressBook.searchByCity("Bhopal"))
+    console.log("Search by state :"+addressBook.searchByState("MadhyaPradesh"));
+
 
     console.log("Address Book:");
     console.log(addressBook.displayContacts());

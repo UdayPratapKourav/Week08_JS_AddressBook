@@ -91,6 +91,10 @@ class AddressBook {
         }
     }
 
+    getContactCount() {
+        return this.contacts.reduce((count) => count + 1, 0);
+    }
+
     // Display all contacts
     displayContacts() {
         return this.contacts.map(contact => contact.toString()).join("\n");
@@ -106,11 +110,12 @@ try {
 
     addressBook.addContact(contact1);
     addressBook.addContact(contact2);
-    addressBook.editContact("Uday", "Kourav", { phone: "9999999999", address: "456 New St" });
-    addressBook.deleteContact("John", "Doe");
+   // addressBook.editContact("Uday", "Kourav", { phone: "9999999999", address: "456 New St" });
+   // addressBook.deleteContact("John", "Doe");
 
     console.log("Address Book:");
     console.log(addressBook.displayContacts());
+    console.log("Total Contacts:", addressBook.getContactCount());
 } catch (error) {
     console.error("Error:", error.message);
 }

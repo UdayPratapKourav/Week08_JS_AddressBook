@@ -49,9 +49,43 @@ class Contact {
 }
 
 // Example Usage with Try-Catch for Error Handling
+// try {
+//     let contact1 = new Contact("Uday", "Kourav", "123 Main St", "Bhopal", "MadhyaPradesh", "462001", "9876543210", "uday@example.com");
+//     console.log(contact1.toString());
+// } catch (error) {
+//     console.error("Error:", error.message);
+// }
+class AddressBook {
+    constructor() {
+        this.contacts = []; // Array to store multiple contacts
+    }
+
+    // Add a new contact after validation
+    addContact(contact) {
+        if (this.contacts.some(c => c.firstName === contact.firstName && c.lastName === contact.lastName)) {
+            throw new Error("Contact with this name already exists.");
+        }
+        this.contacts.push(contact);
+    }
+
+    // Display all contacts
+    displayContacts() {
+        return this.contacts.map(contact => contact.toString()).join("\n");
+    }
+}
+
+// Example Usage
 try {
+    let addressBook = new AddressBook();
+
     let contact1 = new Contact("Uday", "Kourav", "123 Main St", "Bhopal", "MadhyaPradesh", "462001", "9876543210", "uday@example.com");
-    console.log(contact1.toString());
+    let contact2 = new Contact("John", "Doe", "456 Park Ave", "Indore", "MadhyaPradesh", "452001", "9876543211", "john@example.com");
+
+    addressBook.addContact(contact1);
+    addressBook.addContact(contact2);
+
+    console.log("Address Book:");
+    console.log(addressBook.displayContacts());
 } catch (error) {
     console.error("Error:", error.message);
 }
